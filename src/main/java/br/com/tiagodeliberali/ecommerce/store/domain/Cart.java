@@ -23,11 +23,13 @@ public class Cart {
     }
 
     public void add(CartItem item) {
-        if (itemList.containsKey(item.product().getId())) {
-            itemList.put(item.product().getId(),
-                    item.add(itemList.get(item.product().getId())));
+        ProductId itemId = item.product().getId();
+
+        if (itemList.containsKey(itemId)) {
+            CartItem currentItem = itemList.get(itemId);
+            itemList.put(itemId, currentItem.add(item));
         } else {
-            itemList.put(item.product().getId(), item);
+            itemList.put(itemId, item);
         }
 
         totalAmount = totalAmount.add(item.getTotal());
