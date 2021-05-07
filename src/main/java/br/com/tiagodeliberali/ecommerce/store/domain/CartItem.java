@@ -10,4 +10,8 @@ public record CartItem(Product product, int quantity) {
             throw new IllegalArgumentException("Quantity must be a positive int");
         }
     }
+
+    public Price getTotal() {
+        return product.getValue().times(quantity);
+    }
 }

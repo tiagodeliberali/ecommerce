@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
+import static org.assertj.core.api.Assertions.*;
 
 public class CartItemTests {
     @Test
@@ -29,5 +30,15 @@ public class CartItemTests {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new CartItem(product, -2);
         });
+    }
+
+    @Test
+    public void cart_item_returns_correct_total_amount() {
+        Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
+        CartItem item = new CartItem(product, 3);
+
+        Price total = item.getTotal();
+
+        assertThat(total).isEqualTo(Price.ofDollar(45));
     }
 }
