@@ -43,7 +43,7 @@ public class CartItemTests {
     }
 
     @Test
-    public void add_two_cart_items_sums_its_quantity() {
+    public void add_two_cart_items_sums_its_quantities() {
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
         CartItem item1 = new CartItem(product, 3);
         CartItem item2 = new CartItem(product, 5);
