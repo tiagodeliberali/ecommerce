@@ -1,5 +1,7 @@
 package br.com.tiagodeliberali.ecommerce.store.domain;
 
+import java.util.Objects;
+
 public record Price(float amount, String currency) {
     public static Price ZERO = Price.ofDollar(0);
 
@@ -22,6 +24,6 @@ public record Price(float amount, String currency) {
     }
 
     private boolean isValidCurrency(String currency) {
-        return currency.equals("usd");
+        return "usd".equals(currency);
     }
 }

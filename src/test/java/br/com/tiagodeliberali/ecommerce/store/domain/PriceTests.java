@@ -33,4 +33,11 @@ public class PriceTests {
             new Price(1.99f, "brl");
         });
     }
+
+    @Test
+    public void price_do_not_accept_null_currency() {
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new Price(1.99f, null);
+        });
+    }
 }
