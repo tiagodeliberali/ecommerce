@@ -1,6 +1,6 @@
 package br.com.tiagodeliberali.ecommerce.store.domain;
 
-import java.util.Objects;
+import java.util.Arrays;
 
 public record Price(float amount, String currency) {
     public static Price ZERO = Price.ofDollar(0);
@@ -24,6 +24,18 @@ public record Price(float amount, String currency) {
     }
 
     private boolean isValidCurrency(String currency) {
-        return "usd".equals(currency);
+        return Arrays.asList("usd", "brl").contains(currency);
+    }
+
+    public Price add(Price price) {
+        if (!this.currency.equals(price.currency)) {
+            throw new IllegalArgumentException("Price currency must be the same");
+        }
+
+        return new Price(this.amount + price.amount(), this.currency);
+    }
+
+    public Price times(int value) {
+        return new Price(this.amount * value, this.currency);
     }
 }

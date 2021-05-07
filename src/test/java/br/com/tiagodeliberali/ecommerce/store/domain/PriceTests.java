@@ -30,7 +30,7 @@ public class PriceTests {
     @Test
     public void price_currency_must_be_valid() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new Price(1.99f, "brl");
+            new Price(1.99f, "xyz");
         });
     }
 
@@ -39,5 +39,34 @@ public class PriceTests {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             new Price(1.99f, null);
         });
+    }
+
+    @Test
+    public void add_two_prices_sums_its_amounts() {
+        Price p1 = Price.ofDollar(30);
+        Price p2 = Price.ofDollar(20);
+
+        Price total = p1.add(p2);
+
+        assertThat(total).isEqualTo(Price.ofDollar(50));
+    }
+
+    @Test
+    public void add_prices_must_have_same_currency() {
+        Price p1 = Price.ofDollar(30);
+        Price p2 = new Price(20, "brl");
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            p1.add(p2);
+        });
+    }
+
+    @Test
+    public void multiply_price_by_values_keep_price_currency() {
+        Price price = Price.ofDollar(30);
+
+        Price total = price.times(3);
+
+        assertThat(total).isEqualTo(Price.ofDollar(90));
     }
 }
