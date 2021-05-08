@@ -4,10 +4,10 @@ plugins {
 	id 'java'
 }
 
-targetCompatibility = JavaVersion.VERSION_16
 group = 'br.com.tiagodeliberali'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "16"
+targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
 	compileOnly {
@@ -19,9 +19,16 @@ repositories {
 	mavenCentral()
 }
 
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
+}
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
