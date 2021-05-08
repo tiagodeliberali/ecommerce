@@ -1,6 +1,6 @@
 package br.com.tiagodeliberali.ecommerce.store.adapter.in.web;
 
-import br.com.tiagodeliberali.ecommerce.store.application.port.in.UpdateCartItems;
+import br.com.tiagodeliberali.ecommerce.store.application.port.in.UpdateCartItemUseCase;
 import br.com.tiagodeliberali.ecommerce.store.domain.ProductId;
 import br.com.tiagodeliberali.ecommerce.store.domain.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +12,11 @@ import java.util.UUID;
 
 @RestController
 public class CartController {
-    private final UpdateCartItems updateCartItems;
+    private final UpdateCartItemUseCase updateCartItemUseCase;
 
     @Autowired
-    public CartController(UpdateCartItems updateCartItems) {
-        this.updateCartItems = updateCartItems;
+    public CartController(UpdateCartItemUseCase updateCartItemUseCase) {
+        this.updateCartItemUseCase = updateCartItemUseCase;
     }
 
     @PostMapping(path = "/cart/add/{userId}/{productId}/{quantity}")
@@ -24,7 +24,7 @@ public class CartController {
                               @PathVariable("productId") UUID productId,
                               @PathVariable("quantity") int quantity) {
 
-        updateCartItems.addItemToCart(new UserId(userId), new ProductId(productId), quantity);
+        updateCartItemUseCase.addItemToCart(new UserId(userId), new ProductId(productId), quantity);
 
     }
 }

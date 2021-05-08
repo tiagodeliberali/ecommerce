@@ -1,6 +1,6 @@
 package br.com.tiagodeliberali.ecommerce.store.application.service;
 
-import br.com.tiagodeliberali.ecommerce.store.application.port.in.UpdateCartItems;
+import br.com.tiagodeliberali.ecommerce.store.application.port.in.UpdateCartItemUseCase;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadCartPort;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadProductPort;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.UpdateCartStatePort;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UpdateCartService implements UpdateCartItems {
+public class UpdateCartService implements UpdateCartItemUseCase {
     private final LoadCartPort loadCart;
     private final UpdateCartStatePort updateCart;
     private final LoadProductPort loadProduct;
