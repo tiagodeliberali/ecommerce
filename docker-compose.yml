@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres.dev.tiagodeliberali.com.br
+    environment:
+      POSTGRES_USER: "ecommerce"
+      POSTGRES_PASSWORD: "letmein"
+    volumes:
+      - postgres-datavolume:/var/lib/postgresql/ecommerce/data
+    ports:
+      - "5432:5432"
+    networks:
+      - private
+
+volumes:
+  postgres-datavolume:
+    external: true
+
+networks:
+  private:
+    external:
+      name: private

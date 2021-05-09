@@ -1,4 +1,5 @@
 plugins {
+	id "org.flywaydb.flyway" version "7.8.2"
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
@@ -22,6 +23,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.postgresql:postgresql'
+	implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.10.4'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation project(':core')
@@ -30,4 +34,10 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+flyway {
+	url = 'jdbc:postgresql://localhost:5432/ecommerce_store'
+	user = 'ecommerce'
+	password = 'letmein'
 }
