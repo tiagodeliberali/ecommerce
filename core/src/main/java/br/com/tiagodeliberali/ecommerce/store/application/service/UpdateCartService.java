@@ -27,7 +27,7 @@ public class UpdateCartService implements UpdateCartItemUseCase {
 
     @Override
     public void addItemToCart(UserId userId, ProductId productId, int quantity) {
-        Cart cart = loadCart.loadFromUser(userId);
+        Cart cart = loadCart.getActiveCart(userId);
         Product product = loadProduct.loadById(productId);
 
         cart.add(new CartItem(product, quantity));

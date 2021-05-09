@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 public class CartTests {
     @Test
     public void add_item_to_cart_updates_total_amount() {
-        Cart cart = Cart.ForUser(new UserId(UUID.randomUUID()));
+        Cart cart = createEmptyCart();
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
         cart.add(new CartItem(product, 2));
@@ -20,7 +20,7 @@ public class CartTests {
 
     @Test
     public void add_same_item_twice_do_not_include_new_line() {
-        Cart cart = Cart.ForUser(new UserId(UUID.randomUUID()));
+        Cart cart = createEmptyCart();
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
         cart.add(new CartItem(product, 2));
@@ -33,7 +33,7 @@ public class CartTests {
 
     @Test
     public void add_different_items_include_new_lines() {
-        Cart cart = Cart.ForUser(new UserId(UUID.randomUUID()));
+        Cart cart = createEmptyCart();
         Product product1 = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
         cart.add(new CartItem(product1, 2));
 
@@ -44,5 +44,9 @@ public class CartTests {
         assertThat(cart.getTotalLines()).isEqualTo(2);
         assertThat(cart.getItemQuantity(product1.getId())).isEqualTo(2);
         assertThat(cart.getItemQuantity(product2.getId())).isEqualTo(3);
+    }
+
+    private Cart createEmptyCart() {
+        return new Cart(new CartId(UUID.randomUUID()), new UserId(UUID.randomUUID()));
     }
 }

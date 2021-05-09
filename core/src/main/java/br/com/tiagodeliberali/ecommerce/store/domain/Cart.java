@@ -3,23 +3,26 @@ package br.com.tiagodeliberali.ecommerce.store.domain;
 import lombok.Getter;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Cart {
+    @Getter
+    private CartId id;
+
+    @Getter
     private final UserId userId;
-    private final Map<ProductId, CartItem> itemList;
 
     @Getter
     private Price totalAmount;
 
-    private Cart(UserId userId) {
+    private final Map<ProductId, CartItem> itemList;
+
+    public Cart(CartId id, UserId userId) {
+        this.id = id;
         this.userId = userId;
         this.totalAmount = Price.ZERO;
         this.itemList = new HashMap<>();
-    }
-
-    public static Cart ForUser(UserId userId) {
-        return new Cart(userId);
     }
 
     public void add(CartItem item) {
@@ -41,5 +44,9 @@ public class Cart {
 
     public int getItemQuantity(ProductId id) {
         return itemList.get(id).quantity();
+    }
+
+    public Iterator<CartItem> getItemsIterator() {
+        return itemList.values().iterator();
     }
 }

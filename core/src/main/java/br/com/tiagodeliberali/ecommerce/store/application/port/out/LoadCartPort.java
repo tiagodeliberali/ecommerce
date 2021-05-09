@@ -4,5 +4,5 @@ import br.com.tiagodeliberali.ecommerce.store.domain.Cart;
 import br.com.tiagodeliberali.ecommerce.store.domain.UserId;
 
 public interface LoadCartPort {
-    Cart loadFromUser(UserId userId);
+    Cart getActiveCart(UserId userId);
 }
