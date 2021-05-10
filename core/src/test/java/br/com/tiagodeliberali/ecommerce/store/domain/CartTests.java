@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 import static org.assertj.core.api.Assertions.*;
 
-public class CartTests {
+class CartTests {
     @Test
-    public void add_item_to_cart_updates_total_amount() {
+    void add_item_to_cart_updates_total_amount() {
         Cart cart = createEmptyCart();
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
@@ -19,7 +19,7 @@ public class CartTests {
     }
 
     @Test
-    public void add_same_item_twice_do_not_include_new_line() {
+    void add_same_item_twice_do_not_include_new_line() {
         Cart cart = createEmptyCart();
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
@@ -32,7 +32,7 @@ public class CartTests {
     }
 
     @Test
-    public void add_different_items_include_new_lines() {
+    void add_different_items_include_new_lines() {
         Cart cart = createEmptyCart();
         Product product1 = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
         cart.add(new CartItem(product1, 2));
