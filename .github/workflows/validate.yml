@@ -15,6 +15,7 @@ jobs:
       postgres:
         image: postgres
         env:
+          POSTGRES_DB: "ecommerce_store"
           POSTGRES_USER: "ecommerce"
           POSTGRES_PASSWORD: "letmein"
         ports: [ '5432:5432' ]
@@ -51,5 +52,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       run: ./gradlew build sonarqube --info
+    - name: Migrate database
+      run: ./gradlew flywayMigrate
     - name: Check with Gradle
       run: ./gradlew check

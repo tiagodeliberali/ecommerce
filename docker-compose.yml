@@ -7,14 +7,15 @@ services:
       POSTGRES_USER: "ecommerce"
       POSTGRES_PASSWORD: "letmein"
     volumes:
-      - postgres-datavolume:/var/lib/postgresql/ecommerce/data
+      - postgres-volume:/var/lib/postgresql/data
+      - ./.containers/postgres/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
     networks:
       - private
 
 volumes:
-  postgres-datavolume:
+  postgres-volume:
     external: true
 
 networks:
