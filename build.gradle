@@ -1,0 +1,36 @@
+plugins {
+	id "org.sonarqube" version "3.1.1"
+	id 'java'
+}
+
+group = 'br.com.tiagodeliberali'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = "16"
+targetCompatibility = JavaVersion.VERSION_16
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation project(':core')
+	implementation project(':application')
+}
+
+test {
+	useJUnitPlatform()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "tiagodeliberali_ecommerce"
+		property "sonar.projectName", "ecommerce"
+		property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
+	}
+}
