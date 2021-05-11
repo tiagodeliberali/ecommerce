@@ -4,7 +4,6 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,9 +15,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "cart")
-@TypeDefs({
-        @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
 public class CartJpa {
     @Id

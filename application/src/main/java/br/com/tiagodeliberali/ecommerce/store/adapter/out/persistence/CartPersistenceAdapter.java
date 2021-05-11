@@ -26,12 +26,12 @@ public class CartPersistenceAdapter implements LoadCartPort, UpdateCartStatePort
                     return storeRepository.save(newCart);
                 });
 
-        return CartMapper.FromCartJpa(cart);
+        return CartMapper.fromCartJpa(cart);
     }
 
     @Override
     public void updateState(Cart cart) {
-        CartJpa entity = CartMapper.FromCart(cart);
+        CartJpa entity = CartMapper.fromCart(cart);
         storeRepository.save(entity);
     }
 }

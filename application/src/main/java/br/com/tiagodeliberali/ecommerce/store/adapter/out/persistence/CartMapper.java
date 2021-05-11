@@ -12,20 +12,19 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class CartMapper {
+    private CartMapper() {}
 
-    public static CartJpa FromCart(Cart cart) {
+    public static CartJpa fromCart(Cart cart) {
         CartJpa entity = new CartJpa();
         entity.setId(cart.getId().id());
         entity.setUserId(cart.getUserId().id());
         entity.setItemList(new ArrayList<>());
-        cart.getItemsIterator().forEachRemaining((item) -> {
-            entity.getItemList().add(FromCartItem(item));
-        });
+        cart.getItemsIterator().forEachRemaining(item -> entity.getItemList().add(fromCartItem(item)));
 
         return entity;
     }
 
-    private static CartItemJpa FromCartItem(CartItem item) {
+    private static CartItemJpa fromCartItem(CartItem item) {
         CartItemJpa result = new CartItemJpa();
         result.setProductId(item.product().getId().id());
         result.setValue(item.product().getValue().amount());
@@ -35,7 +34,7 @@ public class CartMapper {
         return result;
     }
 
-    public static Cart FromCartJpa(CartJpa cart) {
+    public static Cart fromCartJpa(CartJpa cart) {
         Cart result = new Cart(new CartId(cart.getId()), new UserId(cart.getUserId()));
         Optional.ofNullable(cart.getItemList()).ifPresent(items -> {
             for (CartItemJpa item: items) {
