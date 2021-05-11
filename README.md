@@ -14,5 +14,6 @@ framework.
 - docker for postgres database dev creation
 - flyway to database migration
 - jsonb to store cart items on database
+- sonarqube on multiple module project
 - actuator to health check endpoints
 
