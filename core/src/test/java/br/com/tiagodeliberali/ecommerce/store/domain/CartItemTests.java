@@ -9,27 +9,21 @@ import static org.assertj.core.api.Assertions.*;
 class CartItemTests {
     @Test
     void cart_item_do_not_accept_null_product() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new CartItem(null, 3);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CartItem(null, 3));
     }
 
     @Test
     void cart_item_do_not_accept_zero_quantity() {
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new CartItem(product, 0);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CartItem(product, 0));
     }
 
     @Test
     void cart_item_do_not_accept_negative_quantity() {
         Product product = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            new CartItem(product, -2);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new CartItem(product, -2));
     }
 
     @Test
@@ -61,8 +55,6 @@ class CartItemTests {
         Product product2 = new Product(new ProductId(UUID.randomUUID()), Price.ofDollar(15));
         CartItem item2 = new CartItem(product2, 5);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            item1.add(item2);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> item1.add(item2));
     }
 }

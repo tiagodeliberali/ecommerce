@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 class ProductIdTests {
     @Test
     void product_id_cannot_accept_null_uuid() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           new ProductId(null);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new ProductId(null));
     }
 }
