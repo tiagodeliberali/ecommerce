@@ -10,9 +10,9 @@ import br.com.tiagodeliberali.ecommerce.store.domain.Product;
 import br.com.tiagodeliberali.ecommerce.store.domain.ProductId;
 import br.com.tiagodeliberali.ecommerce.store.domain.UserId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UpdateCartService implements UpdateCartItemUseCase {
     private final LoadCartPort loadCart;
     private final UpdateCartStatePort updateCart;
