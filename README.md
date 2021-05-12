@@ -15,5 +15,7 @@ framework.
 - flyway to database migration
 - jsonb to store cart items on database
 - sonarqube on multiple module project
+- github actions to run checks and sonarqube
+- coverage with jacoco
 - actuator to health check endpoints
 
