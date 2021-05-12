@@ -1,5 +1,6 @@
 package br.com.tiagodeliberali.ecommerce.store.domain;
 
+import br.com.tiagodeliberali.ecommerce.store.CartAssert;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -15,7 +16,7 @@ class CartTests {
 
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(30));
         assertThat(cart.getTotalLines()).isEqualTo(1);
-        assertThat(cart.getItemQuantity(product.getId())).isEqualTo(2);
+        CartAssert.assertThat(cart).hasItemWithQuantity(product, 2);
     }
 
     @Test
@@ -28,7 +29,7 @@ class CartTests {
 
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(75));
         assertThat(cart.getTotalLines()).isEqualTo(1);
-        assertThat(cart.getItemQuantity(product.getId())).isEqualTo(5);
+        CartAssert.assertThat(cart).hasItemWithQuantity(product, 5);
     }
 
     @Test
@@ -42,8 +43,8 @@ class CartTests {
 
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(90));
         assertThat(cart.getTotalLines()).isEqualTo(2);
-        assertThat(cart.getItemQuantity(product1.getId())).isEqualTo(2);
-        assertThat(cart.getItemQuantity(product2.getId())).isEqualTo(3);
+        CartAssert.assertThat(cart).hasItemWithQuantity(product1, 2);
+        CartAssert.assertThat(cart).hasItemWithQuantity(product2, 3);
     }
 
     private Cart createEmptyCart() {
