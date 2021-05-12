@@ -43,8 +43,9 @@ class CartTests {
 
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(90));
         assertThat(cart.getTotalLines()).isEqualTo(2);
-        CartAssert.assertThat(cart).hasItemWithQuantity(product1, 2);
-        CartAssert.assertThat(cart).hasItemWithQuantity(product2, 3);
+        CartAssert.assertThat(cart)
+                .hasItemWithQuantity(product1, 2)
+                .hasItemWithQuantity(product2, 3);
     }
 
     private Cart createEmptyCart() {

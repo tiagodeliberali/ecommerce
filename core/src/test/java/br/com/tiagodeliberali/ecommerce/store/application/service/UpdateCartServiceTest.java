@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class UpdateCartServiceTest {
+class UpdateCartServiceTest {
     @Mock
     private LoadCartPort loadCart;
 
@@ -36,7 +36,7 @@ public class UpdateCartServiceTest {
     private UpdateCartService updateCartService;
 
     @Test
-    public void add_item_to_cart_persist_loaded_cart_and_product() {
+    void add_item_to_cart_persist_loaded_cart_and_product() {
         UserId userId = new UserId(UUID.randomUUID());
         ProductId productId = new ProductId(UUID.randomUUID());
 

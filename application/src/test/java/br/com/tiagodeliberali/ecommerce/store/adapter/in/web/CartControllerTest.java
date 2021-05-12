@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(controllers = CartController.class)
-public class CartControllerTest {
+class CartControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -29,7 +29,7 @@ public class CartControllerTest {
     private UpdateCartItemUseCase updateCartItemUseCase;
 
     @Test
-    public void add_cart_item_on_valid_input() throws Exception {
+    void add_cart_item_on_valid_input() throws Exception {
         UUID userId = UUID.randomUUID();
         UUID productId = UUID.randomUUID();
         CartItemResource cartItem = new CartItemResource(productId, 6);
@@ -43,7 +43,7 @@ public class CartControllerTest {
     }
 
     @Test
-    public void missing_information_from_resource_returns_4xx() throws Exception {
+    void missing_information_from_resource_returns_4xx() throws Exception {
         UUID userId = UUID.randomUUID();
         CartItemResource cartItem = new CartItemResource(null, 6);
 
