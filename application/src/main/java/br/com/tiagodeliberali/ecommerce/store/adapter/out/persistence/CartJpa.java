@@ -2,8 +2,9 @@ package br.com.tiagodeliberali.ecommerce.store.adapter.out.persistence;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -18,7 +19,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "cart")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartJpa {

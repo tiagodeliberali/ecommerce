@@ -1,15 +1,17 @@
 package br.com.tiagodeliberali.ecommerce.store.adapter.out.persistence;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class CartItemJpa implements Serializable {
     private UUID productId;
     private float value;
