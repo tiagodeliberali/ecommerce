@@ -28,7 +28,7 @@ public class CartJpa {
     @GeneratedValue
     private UUID id;
 
-    @Type(type="pg-uuid")
+    @Type(type = "pg-uuid")
     private UUID userId;
 
     @Type(type = "jsonb")

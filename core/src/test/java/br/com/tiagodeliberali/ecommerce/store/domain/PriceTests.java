@@ -2,6 +2,7 @@ package br.com.tiagodeliberali.ecommerce.store.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 class PriceTests {

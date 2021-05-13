@@ -10,8 +10,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CartItemResource {
     @NotNull
-    private UUID productId;
+    private final UUID productId;
 
     @NotNull
-    private int quantity;
+    private final int quantity;
 }

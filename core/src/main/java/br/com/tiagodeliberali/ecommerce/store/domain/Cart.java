@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Cart {
     @Getter
-    private CartId id;
+    private final CartId id;
 
     @Getter
     private final UserId userId;

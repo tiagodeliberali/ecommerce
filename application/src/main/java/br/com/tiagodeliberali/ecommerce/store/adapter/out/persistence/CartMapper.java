@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class CartMapper {
-    private CartMapper() {}
+    private CartMapper() {
+    }
 
     public static CartJpa fromCart(Cart cart) {
         CartJpa entity = new CartJpa();
@@ -37,7 +38,7 @@ public class CartMapper {
     public static Cart fromCartJpa(CartJpa cart) {
         Cart result = new Cart(new CartId(cart.getId()), new UserId(cart.getUserId()));
         Optional.ofNullable(cart.getItemList()).ifPresent(items -> {
-            for (CartItemJpa item: items) {
+            for (CartItemJpa item : items) {
                 result.add(new CartItem(
                         new Product(
                                 new ProductId(item.getProductId()),

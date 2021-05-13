@@ -1,9 +1,9 @@
 plugins {
-	id "org.sonarqube" version "3.1.1"
-	id 'org.springframework.boot' version '2.4.5'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-	id 'jacoco'
+    id "org.sonarqube" version "3.1.1"
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'jacoco'
 }
 
 group = 'br.com.tiagodeliberali'
@@ -12,36 +12,36 @@ sourceCompatibility = "16"
 targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 bootJar {
-	enabled = false
+    enabled = false
 }
 
 jar {
-	enabled = true
+    enabled = true
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation project(':core')
-	implementation project(':application')
+    implementation project(':core')
+    implementation project(':application')
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 sonarqube {
-	properties {
-		property "sonar.projectKey", "tiagodeliberali_ecommerce"
-		property "sonar.projectName", "ecommerce"
-		property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-	}
+    properties {
+        property "sonar.projectKey", "tiagodeliberali_ecommerce"
+        property "sonar.projectName", "ecommerce"
+        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
+    }
 }

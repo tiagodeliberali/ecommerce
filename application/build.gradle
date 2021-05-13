@@ -1,9 +1,9 @@
 plugins {
-	id "org.flywaydb.flyway" version "7.8.2"
-	id 'org.springframework.boot'
-	id 'io.spring.dependency-management'
-	id 'java'
-	id 'jacoco'
+    id "org.flywaydb.flyway" version "7.8.2"
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java'
+    id 'jacoco'
 }
 
 group = 'br.com.tiagodeliberali'
@@ -12,49 +12,49 @@ sourceCompatibility = "16"
 targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.postgresql:postgresql'
-	implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.10.4'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	implementation project(':core')
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.postgresql:postgresql'
+    implementation group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.10.4'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation project(':core')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
 
 test {
-	finalizedBy jacocoTestReport // report is always generated after tests run
+    finalizedBy jacocoTestReport // report is always generated after tests run
 }
 
 jacocoTestReport {
-	dependsOn test // tests are required to run before generating the report
-	reports {
-		xml.enabled true
-	}
+    dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled true
+    }
 }
 
 jacoco {
-	toolVersion = "0.8.6"
+    toolVersion = "0.8.6"
 }
 
 flyway {
-	url = 'jdbc:postgresql://localhost:5432/ecommerce_store'
-	user = 'ecommerce'
-	password = 'letmein'
+    url = 'jdbc:postgresql://localhost:5432/ecommerce_store'
+    user = 'ecommerce'
+    password = 'letmein'
 }
