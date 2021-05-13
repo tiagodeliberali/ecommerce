@@ -18,12 +18,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
-public class CartPersistenceAdapterTests {
+class CartPersistenceAdapterTests {
     private final SpringDataStoreRepository springDataStoreRepository;
     private CartPersistenceAdapter adapter;
 
     @Autowired
-    public CartPersistenceAdapterTests(SpringDataStoreRepository springDataStoreRepository) {
+    CartPersistenceAdapterTests(SpringDataStoreRepository springDataStoreRepository) {
         this.springDataStoreRepository = springDataStoreRepository;
     }
 
@@ -39,7 +39,7 @@ public class CartPersistenceAdapterTests {
         Cart cart = adapter.getActiveCart(userId);
 
         assertThat(cart.getUserId()).isEqualTo(userId);
-        assertThat(cart.getTotalLines()).isEqualTo(0);
+        assertThat(cart.getTotalLines()).isZero();
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(0));
     }
 
