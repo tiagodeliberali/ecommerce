@@ -1,7 +1,9 @@
 package br.com.tiagodeliberali.ecommerce.store.adapter.out.persistence;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -17,6 +19,8 @@ import java.util.UUID;
 @Table(name = "cart")
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartJpa {
     @Id
     @GeneratedValue
