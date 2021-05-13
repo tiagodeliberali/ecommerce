@@ -1,7 +1,10 @@
 package br.com.tiagodeliberali.ecommerce.store.adapter.out.persistence;
 
 import br.com.tiagodeliberali.ecommerce.store.domain.Cart;
+import br.com.tiagodeliberali.ecommerce.store.domain.CartId;
+import br.com.tiagodeliberali.ecommerce.store.domain.CartItem;
 import br.com.tiagodeliberali.ecommerce.store.domain.Price;
+import br.com.tiagodeliberali.ecommerce.store.domain.Product;
 import br.com.tiagodeliberali.ecommerce.store.domain.ProductId;
 import br.com.tiagodeliberali.ecommerce.store.domain.UserId;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,5 +60,26 @@ class CartPersistenceAdapterTests {
         assertThat(cart.getTotalLines()).isEqualTo(1);
         assertThat(cart.getTotalAmount()).isEqualTo(Price.ofDollar(75));
         assertThat(cart.getItemQuantity(new ProductId(productId))).isEqualTo(3);
+    }
+
+    @Test
+    void persist_cart() {
+        UUID userId = UUID.randomUUID();
+        UUID productId = UUID.randomUUID();
+        UUID cartId = UUID.randomUUID();
+        Cart cart = new Cart(new CartId(cartId), new UserId(userId));
+        cart.add(new CartItem(new Product(new ProductId(productId), Price.ofDollar(50)), 5));
+
+        adapter.updateState(cart);
+
+        CartJpa cartJpa = springDataStoreRepository.findActiveCartByUser(userId).get();
+        List<CartItemJpa> items = cartJpa.getItemList();
+
+        assertThat(cartJpa.getUserId()).isEqualTo(userId);
+        assertThat(items.size()).isOne();
+        assertThat(items.get(0).getProductId()).isEqualTo(productId);
+        assertThat(items.get(0).getCurrency()).isEqualTo("usd");
+        assertThat(items.get(0).getValue()).isEqualTo(50);
+        assertThat(items.get(0).getQuantity()).isEqualTo(5);
     }
 }
