@@ -15,17 +15,17 @@ public class CartMapper {
     private CartMapper() {
     }
 
-    public static CartJpa fromCart(Cart cart) {
+    public static CartJpa from(Cart cart) {
         CartJpa entity = new CartJpa();
         entity.setId(cart.getId().id());
         entity.setUserId(cart.getUserId().id());
         entity.setItemList(new ArrayList<>());
-        cart.getItemsIterator().forEachRemaining(item -> entity.getItemList().add(fromCartItem(item)));
+        cart.getItemsIterator().forEachRemaining(item -> entity.getItemList().add(from(item)));
 
         return entity;
     }
 
-    private static CartItemJpa fromCartItem(CartItem item) {
+    private static CartItemJpa from(CartItem item) {
         CartItemJpa result = new CartItemJpa();
         result.setProductId(item.product().getId().id());
         result.setValue(item.product().getValue().amount());
@@ -35,7 +35,7 @@ public class CartMapper {
         return result;
     }
 
-    public static Cart fromCartJpa(CartJpa cart) {
+    public static Cart from(CartJpa cart) {
         Cart result = new Cart(new CartId(cart.getId()), new UserId(cart.getUserId()));
         Optional.ofNullable(cart.getItemList()).ifPresent(items -> {
             for (CartItemJpa item : items) {

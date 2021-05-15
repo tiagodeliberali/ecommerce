@@ -2,6 +2,7 @@ package br.com.tiagodeliberali.ecommerce.store.application.service;
 
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadCartPort;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadProductPort;
+import br.com.tiagodeliberali.ecommerce.store.application.port.out.ProductNotFoundException;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.UpdateCartStatePort;
 import br.com.tiagodeliberali.ecommerce.store.domain.Cart;
 import br.com.tiagodeliberali.ecommerce.store.domain.CartId;
@@ -36,7 +37,7 @@ class UpdateCartServiceTest {
     private UpdateCartService updateCartService;
 
     @Test
-    void add_item_to_cart_persist_loaded_cart_and_product() {
+    void add_item_to_cart_persist_loaded_cart_and_product() throws ProductNotFoundException {
         UserId userId = new UserId(UUID.randomUUID());
         ProductId productId = new ProductId(UUID.randomUUID());
 
