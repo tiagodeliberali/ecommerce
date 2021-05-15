@@ -3,7 +3,6 @@ package br.com.tiagodeliberali.ecommerce.store.adapter.out.persistence;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "product")
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductJpa {
