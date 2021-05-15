@@ -55,7 +55,7 @@ public class ControllerExceptionHandler {
         try {
             typeUri = new URI("https://tiagodeliberali.com.br/ecommerce/store/" + type);
         } catch (URISyntaxException uriSyntaxException) {
-            uriSyntaxException.printStackTrace();
+            return null;
         }
         return typeUri;
     }
