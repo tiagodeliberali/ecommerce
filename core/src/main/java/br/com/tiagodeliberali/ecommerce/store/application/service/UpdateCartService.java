@@ -3,6 +3,7 @@ package br.com.tiagodeliberali.ecommerce.store.application.service;
 import br.com.tiagodeliberali.ecommerce.store.application.port.in.UpdateCartItemUseCase;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadCartPort;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.LoadProductPort;
+import br.com.tiagodeliberali.ecommerce.store.application.port.out.ProductNotFoundException;
 import br.com.tiagodeliberali.ecommerce.store.application.port.out.UpdateCartStatePort;
 import br.com.tiagodeliberali.ecommerce.store.domain.Cart;
 import br.com.tiagodeliberali.ecommerce.store.domain.CartItem;
@@ -26,7 +27,7 @@ public class UpdateCartService implements UpdateCartItemUseCase {
     }
 
     @Override
-    public void addItemToCart(UserId userId, ProductId productId, int quantity) {
+    public void addItemToCart(UserId userId, ProductId productId, int quantity) throws ProductNotFoundException {
         Cart cart = loadCart.getActiveCart(userId);
         Product product = loadProduct.loadById(productId);
 

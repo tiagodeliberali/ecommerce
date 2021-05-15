@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CartPersistenceAdapter implements LoadCartPort, UpdateCartStatePort {
-    private final SpringDataStoreRepository storeRepository;
+    private final SpringCartRepository storeRepository;
 
     @Autowired
-    public CartPersistenceAdapter(SpringDataStoreRepository storeRepository) {
+    public CartPersistenceAdapter(SpringCartRepository storeRepository) {
         this.storeRepository = storeRepository;
     }
 
@@ -26,12 +26,12 @@ public class CartPersistenceAdapter implements LoadCartPort, UpdateCartStatePort
                     return storeRepository.save(newCart);
                 });
 
-        return CartMapper.fromCartJpa(cart);
+        return CartMapper.from(cart);
     }
 
     @Override
     public void updateState(Cart cart) {
-        CartJpa entity = CartMapper.fromCart(cart);
+        CartJpa entity = CartMapper.from(cart);
         storeRepository.save(entity);
     }
 }

@@ -22,17 +22,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class CartPersistenceAdapterTests {
-    private final SpringDataStoreRepository springDataStoreRepository;
+    private final SpringCartRepository springCartRepository;
     private CartPersistenceAdapter adapter;
 
     @Autowired
-    CartPersistenceAdapterTests(SpringDataStoreRepository springDataStoreRepository) {
-        this.springDataStoreRepository = springDataStoreRepository;
+    CartPersistenceAdapterTests(SpringCartRepository springCartRepository) {
+        this.springCartRepository = springCartRepository;
     }
 
     @BeforeEach
     void initUseCase() {
-        adapter = new CartPersistenceAdapter(springDataStoreRepository);
+        adapter = new CartPersistenceAdapter(springCartRepository);
     }
 
     @Test
@@ -52,7 +52,7 @@ class CartPersistenceAdapterTests {
         UUID productId = UUID.randomUUID();
         List<CartItemJpa> items =
                 Collections.singletonList(new CartItemJpa(productId, 25, "usd", 3));
-        springDataStoreRepository.save(new CartJpa(UUID.randomUUID(), userId, items));
+        springCartRepository.save(new CartJpa(UUID.randomUUID(), userId, items));
 
         Cart cart = adapter.getActiveCart(new UserId(userId));
 
@@ -72,7 +72,7 @@ class CartPersistenceAdapterTests {
 
         adapter.updateState(cart);
 
-        CartJpa cartJpa = springDataStoreRepository.findActiveCartByUser(userId).get();
+        CartJpa cartJpa = springCartRepository.findActiveCartByUser(userId).get();
         List<CartItemJpa> items = cartJpa.getItemList();
 
         assertThat(cartJpa.getUserId()).isEqualTo(userId);

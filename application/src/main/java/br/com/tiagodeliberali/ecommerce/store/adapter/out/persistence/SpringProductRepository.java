@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface SpringDataStoreRepository extends JpaRepository<CartJpa, String> {
+public interface SpringProductRepository extends JpaRepository<ProductJpa, String>  {
 
-    @Query("select c from CartJpa c where userId = :userId")
-    Optional<CartJpa> findActiveCartByUser(UUID userId);
+    @Query("select p from ProductJpa p where id = :productId")
+    Optional<ProductJpa> findById(UUID productId);
 }

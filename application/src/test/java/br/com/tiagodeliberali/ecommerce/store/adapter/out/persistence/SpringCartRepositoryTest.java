@@ -12,18 +12,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class SpringDataStoreRepositoryTest {
-    private final SpringDataStoreRepository springDataStoreRepository;
+class SpringCartRepositoryTest {
+    private final SpringCartRepository springCartRepository;
 
     @Autowired
-    SpringDataStoreRepositoryTest(SpringDataStoreRepository springDataStoreRepository) {
-        this.springDataStoreRepository = springDataStoreRepository;
+    SpringCartRepositoryTest(SpringCartRepository springCartRepository) {
+        this.springCartRepository = springCartRepository;
     }
 
     @Test
     void return_empty_when_cart_do_not_exists() {
         UUID userId = UUID.randomUUID();
-        Optional<CartJpa> cart = springDataStoreRepository.findActiveCartByUser(userId);
+        Optional<CartJpa> cart = springCartRepository.findActiveCartByUser(userId);
 
         assertThat(cart).isEmpty();
     }
@@ -31,9 +31,9 @@ class SpringDataStoreRepositoryTest {
     @Test
     void return_active_cart_when_found() {
         UUID userId = UUID.randomUUID();
-        springDataStoreRepository.save(new CartJpa(UUID.randomUUID(), userId, null));
+        springCartRepository.save(new CartJpa(UUID.randomUUID(), userId, null));
 
-        Optional<CartJpa> cart = springDataStoreRepository.findActiveCartByUser(userId);
+        Optional<CartJpa> cart = springCartRepository.findActiveCartByUser(userId);
 
         assertThat(cart).isNotEmpty();
         assertThat(cart.get().getUserId()).isEqualTo(userId);
