@@ -17,5 +17,6 @@ Spring boot as the service framework.
 - sonarqube on multiple module project
 - github actions to run checks and sonarqube
 - coverage with jacoco
+- API responses following [rfc7807](https://datatracker.ietf.org/doc/html/rfc7807) using `@ControllerAdvice` and `Problem`
 - actuator to health check endpoints
 
