@@ -1,5 +1,5 @@
 plugins {
-    id "org.sonarqube" version "3.1.1"
+    id "org.sonarqube"
     id 'org.springframework.boot' version '2.4.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
@@ -52,12 +52,4 @@ jacocoTestReport {
 
 jacoco {
     toolVersion = "0.8.6"
-}
-
-sonarqube {
-    properties {
-        property "sonar.projectKey", "tiagodeliberali_ecommerce"
-        property "sonar.projectName", "ecommerce.core"
-        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-    }
 }

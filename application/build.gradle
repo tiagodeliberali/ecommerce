@@ -1,5 +1,5 @@
 plugins {
-    id "org.sonarqube" version "3.1.1"
+    id "org.sonarqube"
     id "org.flywaydb.flyway" version "7.8.2"
     id 'org.springframework.boot' version '2.4.5'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -59,12 +59,3 @@ flyway {
     user = 'ecommerce'
     password = 'letmein'
 }
-
-sonarqube {
-    properties {
-        property "sonar.projectKey", "tiagodeliberali_ecommerce"
-        property "sonar.projectName", "ecommerce.application"
-        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-    }
-}
-
