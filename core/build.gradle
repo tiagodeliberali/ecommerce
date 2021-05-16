@@ -8,7 +8,6 @@ plugins {
 group = 'br.com.tiagodeliberali'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "16"
-targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
     compileOnly {
