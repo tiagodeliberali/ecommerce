@@ -60,11 +60,13 @@ flyway {
     user = 'ecommerce'
     password = 'letmein'
 }
-sonarqube {
-    properties {
-        property "sonar.projectKey", "tiagodeliberali_ecommerce"
-        property "sonar.projectName", "ecommerce"
-        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
+
+project(":application") {
+    sonarqube {
+        properties {
+            property "sonar.projectKey", "tiagodeliberali_ecommerce"
+            property "sonar.projectName", "ecommerce"
+            property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
+        }
     }
 }
-
