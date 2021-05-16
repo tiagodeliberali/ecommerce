@@ -22,6 +22,15 @@ public class ResponseBodyMatchers {
         };
     }
 
+    public <T> ResultMatcher containsObjectAsJson(
+            Object expectedObject) {
+        return mvcResult -> {
+            String json = mvcResult.getResponse().getContentAsString();
+            assertThat(json).isEqualToIgnoringWhitespace(
+                    objectMapper.writeValueAsString(expectedObject));
+        };
+    }
+
     static ResponseBodyMatchers responseBody() {
         return new ResponseBodyMatchers();
     }

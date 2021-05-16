@@ -13,11 +13,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -67,7 +69,7 @@ class UpdateCartItemUseCaseTests {
     }
 
     @Test
-    void add_second_item_to_cart_increment_quantity() throws Exception {
+    void get_cart_from_user() throws Exception {
         // arrange
         UUID userId = UUID.randomUUID();
         ProductJpa addedProduct = springProductRepository.save(ProductJpa.build(20, "usd"));
@@ -78,20 +80,18 @@ class UpdateCartItemUseCaseTests {
                 .andExpect(status().isOk());
 
         // act
-        mockMvc.perform(post("/cart/add/{userId}", userId)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new CartItemResource(addedProduct.getId(), 3))))
-                .andExpect(status().isOk());
+        MvcResult result = mockMvc.perform(get("/cart/{userId}", userId)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
 
         // assert
-        CartJpa cartJpa = springCartRepository.findActiveCartByUser(userId).get();
-        List<CartItemJpa> items = cartJpa.getItemList();
-
-        assertThat(cartJpa.getUserId()).isEqualTo(userId);
-        assertThat(items.size()).isOne();
-        assertThat(items.get(0).getProductId()).isEqualTo(addedProduct.getId());
-        assertThat(items.get(0).getCurrency()).isEqualTo("usd");
-        assertThat(items.get(0).getValue()).isEqualTo(20);
-        assertThat(items.get(0).getQuantity()).isEqualTo(9);
+        assertThat(result.getResponse().getContentAsString())
+                .contains("\"userId\":\"" + userId + "\"")
+                .contains("\"totalLines\":1")
+                .contains("\"totalAmount\":120.0")
+                .contains("\"amount\":20.0")
+                .contains("\"currency\":\"usd\"")
+                .contains("\"quantity\":6");
     }
 }
