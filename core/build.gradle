@@ -1,6 +1,7 @@
 plugins {
-    id 'org.springframework.boot'
-    id 'io.spring.dependency-management'
+    id "org.sonarqube"
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
     id 'jacoco'
 }
@@ -8,7 +9,6 @@ plugins {
 group = 'br.com.tiagodeliberali'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "16"
-targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
     compileOnly {
