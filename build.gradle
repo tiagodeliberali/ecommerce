@@ -15,6 +15,5 @@ sonarqube {
         property "sonar.projectKey", "tiagodeliberali_ecommerce"
         property "sonar.projectName", "ecommerce"
         property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-        property "sonar.login", "181d3a9e1f948334c68fec1659f2249d62ef3e8c"
     }
 }
