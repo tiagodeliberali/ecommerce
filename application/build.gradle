@@ -10,7 +10,6 @@ plugins {
 group = 'br.com.tiagodeliberali'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "16"
-targetCompatibility = JavaVersion.VERSION_16
 
 configurations {
     compileOnly {
@@ -61,12 +60,11 @@ flyway {
     password = 'letmein'
 }
 
-project(":application") {
-    sonarqube {
-        properties {
-            property "sonar.projectKey", "tiagodeliberali_ecommerce"
-            property "sonar.projectName", "ecommerce"
-            property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-        }
+sonarqube {
+    properties {
+        property "sonar.projectKey", "tiagodeliberali_ecommerce"
+        property "sonar.projectName", "ecommerce.application"
+        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
     }
 }
+

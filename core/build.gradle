@@ -54,12 +54,10 @@ jacoco {
     toolVersion = "0.8.6"
 }
 
-project(":core") {
-    sonarqube {
-        properties {
-            property "sonar.projectKey", "tiagodeliberali_ecommerce"
-            property "sonar.projectName", "ecommerce"
-            property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
-        }
+sonarqube {
+    properties {
+        property "sonar.projectKey", "tiagodeliberali_ecommerce"
+        property "sonar.projectName", "ecommerce.core"
+        property "sonar.host.url", "http://sonarcube-ecommerce.brazilsouth.cloudapp.azure.com/"
     }
 }
