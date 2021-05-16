@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CartMapper {
+    private CartMapper() {}
+
     public static CartResource from(Cart cart) {
         List<CartResource.CartItem> items = new ArrayList<>();
 
