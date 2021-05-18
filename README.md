@@ -1,6 +1,24 @@
-# ecommerce
+# Ecommerce study
 
 Practicing Java and DDD
+
+## Setup
+
+Clone the repository. To setup the database used by this project, use:
+
+```aidl
+docker-compose up -d
+```
+
+With database working, you can build environment using flyway:
+ ```aidl
+./gradlew flywayMigrate
+```
+
+Finally, you can load a server using:
+```aidl
+./gradlew bootRun
+```
 
 ## How many things we need to care
 
@@ -18,5 +36,7 @@ Spring boot as the service framework.
 - github actions to run checks and sonarqube
 - coverage with jacoco
 - API responses following [rfc7807](https://datatracker.ietf.org/doc/html/rfc7807) using `@ControllerAdvice` and `Problem`
+- profiles to deal with default and prod environment
+- action configuration to build and push docker image to docker hub
 - actuator to health check endpoints
 
