@@ -57,19 +57,15 @@ jobs:
         run: ./gradlew build jacocoTestReport sonarqube --info
       - name: Check with Gradle
         run: ./gradlew check
-      - name: Loign to Docker hub
+      - name: Login to Docker hub
         if: github.event_name == 'push'
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build and push
+      - name: Build docker image
         if: github.event_name == 'push'
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          tags: tiagodeliberali/ecommerce:latest
-      - name: Image digest
+        run: docker build -t tiagodeliberali/ecommerce .
+      - name: Push image to docker hub
         if: github.event_name == 'push'
-        run: echo ${{ steps.docker_build.outputs.digest }}
+        run: docker push tiagodeliberali/ecommerce:latest
